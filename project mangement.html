@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Project Management Tool</title>
+  <style>
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    th, td {
+      border: 1px solid black;
+      padding: 8px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #f2f2f2;
+    }
+
+    input[type=text] {
+      width: 100%;
+      padding: 12px 20px;
+      margin: 8px 0;
+      box-sizing: border-box;
+    }
+  </style>
+</head>
+<body>
+  <h1>Project Management Tool</h1>
+
+  <h2>Add Task</h2>
+  <form id="taskForm">
+    <label for="taskName">Task Name:</label>
+    <input type="text" id="taskName" name="taskName" required><br>
+
+    <label for="dueDate">Due Date:</label>
+    <input type="text" id="dueDate" name="dueDate" required><br>
+
+    <label for="assignee">Assignee:</label>
+    <input type="text" id="assignee" name="assignee" required><br>
+
+    <input type="submit" value="Add Task">
+  </form>
+
+  <h2>Task List</h2>
+  <table id="taskList">
+    <tr>
+      <th>Task Name</th>
+      <th>Due Date</th>
+      <th>Assignee</th>
+    </tr>
+  </table>
+
+  <script>
+    // Function to add a new task
+    function addTask() {
+      event.preventDefault();
+
+      // Get form values
+      var taskName = document.getElementById("taskName").value;
+      var dueDate = document.getElementById("dueDate").value;
+      var assignee = document.getElementById("assignee").value;
+
+      // Create a new row in the table
+      var table = document.getElementById("taskList");
+      var row = table.insertRow(-1);
+
+      // Insert cell values
+      var cell1 = row.insertCell(0);
+      var cell2 = row.insertCell(1);
+      var cell3 = row.insertCell(2);
+
+      cell1.innerHTML = taskName;
+      cell2.innerHTML = dueDate;
+      cell3.innerHTML = assignee;
+
+      // Clear form values
+      document.getElementById("taskForm").reset();
+    }
+
+    // Add event listener to form submit
+    document.getElementById("taskForm").addEventListener("submit", addTask);
+  </script>
+</body>
+</html>
